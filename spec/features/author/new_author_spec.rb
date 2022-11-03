@@ -12,4 +12,13 @@ describe "New author page", type: :feature do
     expect(page).to have_field('author[last_name]')
     expect(page).to have_field('author[homepage]')
   end
+  it "should create a author" do
+    visit new_author_path
+    page.fill_in 'author[last_name]', with: 'Dijkstra'
+    page.fill_in 'author[first_name]', with: 'Peter'
+    page.fill_in 'author[homepage]', with: 'example.com'
+    find('input[type="submit"]').click
+    expect(Author.where(first_name: "Peter").first.homepage).to eq("example.com")
+    expect(Author.where(first_name: "aaa").size).to eq(0)
+  end
 end
