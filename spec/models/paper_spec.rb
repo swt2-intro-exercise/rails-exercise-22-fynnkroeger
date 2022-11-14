@@ -5,6 +5,8 @@ describe "Paper object", type: :model do
         paper2 = Paper.new(venue: 'hello', year: 1738)
         expect(paper2).to_not be_valid
         paper3 = FactoryBot.create :paper
-        expect(paper3.authors.length).to eq(0)
+        expect(paper3.authors.length).to eq(1)
+        paper4 = Paper.new(title: 't', venue: 'hello', year: 1738)
+        expect(paper4.authors.length).to eq(0)
     end
 end
