@@ -8,3 +8,7 @@
 
   <%= button_to "Destroy this paper", @paper, method: :delete %>
 </div>
+
+<% @paper.authors.each do |author| %>
+  <p>author.name</p>
+<% end %>
