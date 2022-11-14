@@ -1,7 +1,7 @@
 describe "Paper page", type: :feature do
     it "should show author on the page" do
-        @alan = FactoryBot.create :author
-        visit author_path(@alan)
-        expect(page).to have_text(@alan.name)
+        @paper = FactoryBot.create :paper
+        visit paper_path(@paper)
+        expect(page).to have_text(@paper.authors.first.name)
     end
 end
