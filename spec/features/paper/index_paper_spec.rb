@@ -13,4 +13,11 @@ describe "Paper index page", type: :feature do
         visit papers_path
         expect(page).to have_link "Delete", href: paper_path(@paper)
     end
+
+    it "should only show papers from right year" do
+        @paper = FactoryBot.create :paper
+        @paper2 = Paper.create(title: "hello over there", venue: "djja", year: 1999)
+        visit "/papers?year=1950"
+        expect(page).to_not have_text @paper2.title
+    end
 end
